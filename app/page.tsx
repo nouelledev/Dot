@@ -1,11 +1,15 @@
-import Image from "next/image";
+import getData from "./api/GetCryptoInfo";
 
-export default function Home() {
+type coin = {
+  symbol: string;
+  price: number;
+};
+export default async function Page() {
+  const data: coin[] = await getData(["BNBUSDT", "BTCUSDT", "ETHUSDT"]);
+  console.log(data);
   return (
-    <>
-      <div className="text-center w-full h-full">
-        <h1 className="text-white text-6xl">Hello world</h1>;
-      </div>
-    </>
+    <main>
+      <h1 className="text-white">Tanga</h1>
+    </main>
   );
 }
