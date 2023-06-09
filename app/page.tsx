@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import getData from "./api/GetCryptoInfo";
 
 type coin = {
@@ -45,13 +45,17 @@ export default function Page() {
     return (oldCoin.price - newCoin.price) / oldCoin.price;
   };
 
+  const [items, setItems] = useState<string>('');
+  const handleChange = (e: any) => {
+    setItems(e.target.value);
+  };
+
   return (
     <main className="flex flex-col gap-5">
-      <textarea className="h-12" onChange={
-        (e) => {
-          setCoins(e.target.value.trim().split('\n'));
-        }
-      } ></textarea>
+      <textarea className="h-12" value={items} onChange={handleChange}></textarea>
+      <button className="bg-white" onClick={() => {
+        setCoins(items.trim().split('\n'));
+      }}>CHECK PRICE</button>
       {
         coinData.map((coin) => (
           <div className="flex flex-row gap-2" key={coin.symbol}>
