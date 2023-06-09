@@ -54,7 +54,7 @@ export default function Page() {
     <main className="flex flex-col gap-5">
       <textarea className="h-12" value={items} onChange={handleChange}></textarea>
       <button className="bg-white" onClick={() => {
-        setCoins(items.trim().split('\n'));
+        setCoins(Array.from(new Set([...coins, ...items.trim().split('\n')])));
       }}>CHECK PRICE</button>
       {
         coinData.map((coin) => (
