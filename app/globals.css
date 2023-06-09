@@ -5,3 +5,11 @@
 body {
   background-color: black;
 }
+
+.text-green { 
+  color: green;
+}
+
+.text-red {
+  color: red;
+}
